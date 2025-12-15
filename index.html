@@ -70,12 +70,12 @@ document.getElementById("addr").addEventListener("input", function(){
     .then(r=>r.json())
     .then(data=>{
       data.slice(0,12).forEach(item=>{
-        let name = item.nameZH || item.nameEN || "";
-        let street = item.addressZH || item.addressEN || "";
-        let dist = item.districtZH || districtMap[item.district] || "未知區";
+        let displayName = item.nameZH || item.nameEN || item.addressZH || item.addressEN || "未知地址";
+        let street = (item.nameZH || item.nameEN) ? (item.addressZH || item.addressEN || "") : "";
+        let dist   = item.districtZH || districtMap[item.district] || "未知區";
 
         let div = document.createElement("div");
-        div.innerHTML = `<strong>${name}</strong><br><small>${street}（${dist}）</small>`;
+        div.innerHTML = `<strong>${displayName}</strong><br><small>${street}（${dist}）</small>`;
         div.onclick = ()=>{
           document.getElementById("addr").value = name;
           document.getElementById("district").value = dist;
