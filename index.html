@@ -77,9 +77,9 @@ document.getElementById("addr").addEventListener("input", function(){
         let div = document.createElement("div");
         div.innerHTML = `<strong>${displayName}</strong><br><small>${street}（${dist}）</small>`;
         div.onclick = ()=>{
-          document.getElementById("addr").value = name;
+          document.getElementById("addr").value = displayName;
           document.getElementById("district").value = dist;
-          chosen = {name, street, dist, x:item.x, y:item.y};
+          chosen = {name: displayName, street: street, dist: dist, x: item.x, y: item.y};
           document.getElementById("list").innerHTML = "";
         };
         document.getElementById("list").appendChild(div);
